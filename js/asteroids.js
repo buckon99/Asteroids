@@ -150,6 +150,17 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha) {
             theta += (1 / this.numPoints) * 2 * Math.PI;
         }
     }
+    
+    this.isInside = function (x, y) {
+        var returnValue = true;
+        if(this.points.length === 0)
+            return;
+        for(var i = 0; i < this.points.length - 1; i++) {
+            if(implicitLine(this.points[i], this.points[i + 1], x, y) < 0)
+                return false;
+        }
+        return true;    
+    }
 }
 
 // Methods: this.draw(): draws the particle 
