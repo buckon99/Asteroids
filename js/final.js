@@ -1,8 +1,8 @@
-function setup() 
+/*function setup() 
 {
 	createCanvas(500,500)
 	background(255)
-}
+}*/
 
 function drawShip()
 {	
@@ -168,7 +168,7 @@ function drawShip()
 
 }
 
-function draw()
+/*function draw()
 {
 	drawShip()
-}
+}*/

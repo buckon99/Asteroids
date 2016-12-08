@@ -1,10 +1,7 @@
 var buttons = [];
 var stars = [];
+var exitOffscreenX = 0;
 var font;
-function setup(){
-	createCanvas(1200, 720)
-	setupTitleScreen();
-}
 function populateStarArray(count, minSize, maxSize, colors)
 {
 	for(var i = 0; i < count; i++){
@@ -15,7 +12,8 @@ function populateStarArray(count, minSize, maxSize, colors)
 		stars.push(obj);
 	}
 }
-function titleScreenBackground(){
+function sceneBackground(){
+	background(0);
 	fill(255);
 	for(var i = 0; i < stars.length; i++)
 		ellipse(stars[i].x, stars[i].y, stars[i].size);
@@ -24,13 +22,13 @@ function setupTitleScreen(){
 	font = loadFont('font.ttf');
 	populateStarArray(100, 1, 4);
 	for(var i = 0; i < 3; i++)
-		buttons.push({scalerX: 1.5, scalerY: 1, hover: false});
+		buttons.push({scalerX: 1.5, scalerY: 1, hover: false, clicked: false});
 	buttons[0].text="Play";
 	buttons[1].text="Options";
 	buttons[2].text="Credits";
 }
 function updateTitleScreen(){
-	titleScreenBackground();
+	console.log("test");
 	if(mouseX >= 375 && mouseX <= 750){
 		if(mouseY >= 300 && mouseY <= 400)
 			buttons[0].hover = true;
@@ -43,6 +41,11 @@ function updateTitleScreen(){
 		else buttons[2].hover = false;
 		
 	}
+	var clicked = false;
+	if(buttons[0].clicked || buttons[1].clicked || buttons[2].clicked)
+		clicked = true;
+			if(clicked)
+			exitOffscreenX += 40;
 	for(var i = 0; i < 3; i++){
 		if(buttons[i].hover == true && buttons[i].scalerY < 1.4){
 			buttons[i].scalerY += .05;
@@ -52,14 +55,16 @@ function updateTitleScreen(){
 			buttons[i].scalerY -= .05;
 			buttons[i].scalerX -= .05;
 		}
+		
 		textFont(font);
 		textSize(32);
-		drawButton(475- buttons[i].scalerY*100, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
+		if(exitOffscreenX >= i*200)
+			drawButton(475- buttons[i].scalerY*100 + exitOffscreenX - i*200, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
+		else
+			drawButton(475- buttons[i].scalerY*100, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
 	}
-}
-function draw(){
-	background(0);
-	updateTitleScreen();
+	if(75 - buttons[2].scalerY*100 + exitOffscreenX > width)
+		mainMenu = false;
 }
 function drawButton(x, y, s1, s2, hover, str){
 	fill(0);
@@ -122,15 +127,17 @@ function mouseClicked(){
 	if(mouseX >= 375 && mouseX <= 750){
 		if(mouseY >= 300 && mouseY <= 400)
 		{
-			//begin game
+			buttons[0].clicked = true;
 		}
 		if(mouseY >= 420 && mouseY <= 520)
 		{
+			buttons[1].clicked = true;
 			//show audio options
 			//show difficulty options
 		}
 		if(mouseY >= 540 && mouseY <= 640)
 		{
+			buttons[2].clicked = true;
 			//show team member names & roles
 		}
 	}
