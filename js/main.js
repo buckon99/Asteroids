@@ -1,11 +1,22 @@
 var mainMenu = true;
+var resize = function() {
+	console.log(document.documentElement.clientWidth);
+	width = displayWidth;
+	height = document.documentElement.clientHeight;
+};
+var canvas;
 function setup(){
 	cursor("normal.cur");
-	createCanvas(1200, 720)
+	canvas = createCanvas(displayWidth, displayHeight);
+	
+	resize();
 	setupTitleScreen();
 }
+window.addEventListener("resize", resize);
 function draw(){
 	sceneBackground();
 	if(mainMenu)
 		updateTitleScreen();
+	else
+		updateSpaceShip();
 }

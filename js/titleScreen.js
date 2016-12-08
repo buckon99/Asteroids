@@ -59,9 +59,9 @@ function updateTitleScreen(){
 		textFont(font);
 		textSize(32);
 		if(exitOffscreenX >= i*200)
-			drawButton(475- buttons[i].scalerY*100 + exitOffscreenX - i*200, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
+			drawButton(width/2 - 130 - buttons[i].scalerY*100 + exitOffscreenX - i*200, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
 		else
-			drawButton(475- buttons[i].scalerY*100, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
+			drawButton(width/2 - 130 - buttons[i].scalerY*100, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
 	}
 	if(75 - buttons[2].scalerY*100 + exitOffscreenX > width)
 		mainMenu = false;
