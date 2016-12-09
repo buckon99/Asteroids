@@ -7,8 +7,8 @@ function populateStarArray(count, minSize, maxSize, colors)
 	for(var i = 0; i < count; i++){
 		var obj = {};
 		obj.size = random(minSize, maxSize);
-		obj.x = random(random(random(0, random(100, random(200, 400)))), 1200);
-		obj.y = random(random(random(0, random(100, random(200, 400)))), 720);
+		obj.x = random(random(random(0, random(100, random(200, 400)))), width);
+		obj.y = random(random(random(0, random(100, random(200, 400)))), height);
 		stars.push(obj);
 	}
 }
@@ -28,15 +28,14 @@ function setupTitleScreen(){
 	buttons[2].text="Credits";
 }
 function updateTitleScreen(){
-	console.log("test");
-	if(mouseX >= 375 && mouseX <= 750){
-		if(mouseY >= 300 && mouseY <= 400)
+	if(mouseX >= width/2 - 200 && mouseX <= width/2 + 200){
+		if(mouseY >= 2*height/3-100 && mouseY <= 2*height/3)
 			buttons[0].hover = true;
 		else buttons[0].hover = false;
-		if(mouseY >= 420 && mouseY <= 520)
+		if(mouseY >= 2*height/3 + 20 && mouseY <= 2*height/3 + 120)
 			buttons[1].hover = true;
 		else buttons[1].hover = false;
-		if(mouseY >= 540 && mouseY <= 640)
+		if(mouseY >= 2*height/3 + 140 && mouseY <= 2*height/3 + 240)
 			buttons[2].hover = true;
 		else buttons[2].hover = false;
 		
@@ -44,8 +43,8 @@ function updateTitleScreen(){
 	var clicked = false;
 	if(buttons[0].clicked || buttons[1].clicked || buttons[2].clicked)
 		clicked = true;
-			if(clicked)
-			exitOffscreenX += 40;
+	if(clicked)
+		exitOffscreenX += 40;
 	for(var i = 0; i < 3; i++){
 		if(buttons[i].hover == true && buttons[i].scalerY < 1.4){
 			buttons[i].scalerY += .05;
@@ -59,11 +58,11 @@ function updateTitleScreen(){
 		textFont(font);
 		textSize(32);
 		if(exitOffscreenX >= i*200)
-			drawButton(width/2 - 130 - buttons[i].scalerY*100 + exitOffscreenX - i*200, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
+			drawButton(width/2 - 130 - buttons[i].scalerY*100 + exitOffscreenX - i*200, 2*height/3 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
 		else
-			drawButton(width/2 - 130 - buttons[i].scalerY*100, 400 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
+			drawButton(width/2 - 130 - buttons[i].scalerY*100, 2*height/3 + i*120 - buttons[i].scalerY*100, buttons[i].scalerX, buttons[i].scalerY, buttons[i].hover, buttons[i].text);
 	}
-	if(75 - buttons[2].scalerY*100 + exitOffscreenX > width)
+	if(width/2 - 530 - buttons[2].scalerY*100 + exitOffscreenX > width)
 		mainMenu = false;
 }
 function drawButton(x, y, s1, s2, hover, str){
@@ -124,21 +123,12 @@ function drawButton(x, y, s1, s2, hover, str){
 	pop();
 }
 function mouseClicked(){
-	if(mouseX >= 375 && mouseX <= 750){
-		if(mouseY >= 300 && mouseY <= 400)
-		{
+	if(mouseX >= width/2 - 200 && mouseX <= width/2 + 200){
+		if(mouseY >= 2*height/3-100 && mouseY <= 2*height/3)
 			buttons[0].clicked = true;
-		}
-		if(mouseY >= 420 && mouseY <= 520)
-		{
+		if(mouseY >= 2*height/3 + 20 && mouseY <= 2*height/3 + 120)
 			buttons[1].clicked = true;
-			//show audio options
-			//show difficulty options
-		}
-		if(mouseY >= 540 && mouseY <= 640)
-		{
+		if(mouseY >= 2*height/3 + 140 && mouseY <= 2*height/3 + 240)
 			buttons[2].clicked = true;
-			//show team member names & roles
-		}
 	}
 }

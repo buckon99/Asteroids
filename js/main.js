@@ -18,5 +18,7 @@ function draw(){
 	if(mainMenu)
 		updateTitleScreen();
 	else
-		updateSpaceShip();
+	{
+		updateShip();
+	}
 }

@@ -4,8 +4,14 @@
 	background(255)
 }*/
 
-function drawShip()
+function drawShip(x, y, r)
 {	
+	push();
+		translate(x, y);
+		rotate(r);
+		translate(-73, -70);
+		scale(.3);
+	
 	strokeWeight(1)
 	stroke(0)
 	fill(40,160,30)
@@ -165,7 +171,7 @@ function drawShip()
 	ellipse(185,340,10,5)
 	ellipse(305,340,10,5)
 
-
+	pop();
 }
 
 /*function draw()
