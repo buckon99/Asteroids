@@ -1,5 +1,5 @@
 var cX, cY, shoot, x1, y1, speed;
-//lasers
+
 var laser = []
 function setup(){
 	shoot = false;
@@ -26,7 +26,7 @@ function draw(){
 	}
 }
 
-function ddrawLaser(x0, x1, y0, y1){
+function drawLaser(x0, x1, y0, y1){
 		var laser = createVector(x1-x0, y1-y0);
 		laser.normalize();
 		laser.mult(10);
