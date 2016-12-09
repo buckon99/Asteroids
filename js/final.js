@@ -1,9 +1,3 @@
-/*function setup() 
-{
-	createCanvas(500,500)
-	background(255)
-}*/
-
 function drawShip(x, y, r)
 {	
 	push();
@@ -173,8 +167,3 @@ function drawShip(x, y, r)
 
 	pop();
 }
-
-/*function draw()
-{
-	drawShip()
-}*/
