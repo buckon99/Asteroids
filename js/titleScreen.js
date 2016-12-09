@@ -1,5 +1,6 @@
 var buttons = [];
 var stars = [];
+
 var exitOffscreenX = 0;
 var font;
 function populateStarArray(count, minSize, maxSize, colors)

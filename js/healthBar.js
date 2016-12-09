@@ -2,6 +2,8 @@ var health = 16;
 	
 function dropHealth(amt){
 	health -= amt;
+	if(health <= 0)
+		gameOver = true;
 }
 function drawHealthBar(){
 	push();

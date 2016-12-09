@@ -13,6 +13,5 @@ function updateShip(){
 	var angle = PI/2-atan(vY/vX);
 	if(mouseX < width/2)
 		var angle = atan(-vY/vX) - PI / 2;
-	console.log(angle+ PI/2);
 	drawShip(width/2, height/2, angle);
 }
