@@ -122,7 +122,7 @@ function drawButton(x, y, s1, s2, hover, str){
 		text(str, 50, 50);
 	pop();
 }
-function mouseClicked(){
+function titleScreenClick(){
 	if(mouseX >= width/2 - 200 && mouseX <= width/2 + 200){
 		if(mouseY >= 2*height/3-100 && mouseY <= 2*height/3)
 			buttons[0].clicked = true;

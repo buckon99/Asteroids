@@ -20,5 +20,14 @@ function draw(){
 	else
 	{
 		updateShip();
+		updateUI();
 	}
+}
+function mouseClicked(){
+	if(mainMenu)
+		titleScreenClick();
+	else{
+		dropHealth(1);
+	}
+	
 }
