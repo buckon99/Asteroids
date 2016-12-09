@@ -1,5 +1,5 @@
 var cX, cY, shoot, x1, y1, speed;
-
+//lasers
 var laser = []
 function setup(){
 	shoot = false;
