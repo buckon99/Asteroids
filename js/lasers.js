@@ -4,8 +4,6 @@ var laser = []
 function setup(){
 	shoot = false;
 	createCanvas(400, 400);
-	//x = 200;
-	//y = 200;
 	cX = width/2;
 	cY = height/2;
 	speed = 0;
