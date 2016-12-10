@@ -23,6 +23,7 @@ function draw(){
 	else
 	{
 		roundDraw();
+		drawLaser();
 		updateShip();
 		updateUI();
 	}
@@ -43,7 +44,7 @@ function mouseClicked(){
 	else if (gameOver)
 		gameOverClicked();
 	else{
-		dropHealth(1);
+		laserClick();
 	}
 	
 }
