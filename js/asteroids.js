@@ -1,20 +1,14 @@
-/* This code was created by Ryan Solorzano
- * This can draw an asteroid
- */
-
 var asteroids = [];
 
-this.draw = function() {
-    ellipse(this.x, this.y);
-}
 // Methods: this.spark(sparkX, sparkY, direction): creates a spark particle system at given point in direction of vector given (magnitude changes max speed)
 //            this.explode(): creates little rocks (should be used after destruction of asteroid)
 //            this.destroy(): removes all instances of this from asteroids
 //            this.draw(): draws the asteroid (and the spark and/or small pieces particle system if there is any)
-//            this.updatePosition(): changes the postion and of the asteroid and particles based on the velocity, spinSpeed, etc
+//            this.updatePosition(): changes the postion and of the asteroid and particles based on the velocity, spinSpeed, 
+//            rgb HAS TO BE AN ARRAY sorry :(
 
-function asteroid(x, y, size, lives, spinSpeed, velocity) {
-    this.mainAsteroid = new asteroid2(x, y, size, spinSpeed, velocity, 255);
+function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
+    this.mainAsteroid = new asteroid2(x, y, size, spinSpeed, velocity, 255, rgb);
     this.hits = lives;
 
 
@@ -26,7 +20,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity) {
     this.piecesLife = [];
     this.numPieces = random(3, 6);
 
-    var drawAsteroid = true;
+    this.drawAsteroid = true;
 
     this.spark = function (sparkX, sparkY, direction) {
         var tempVector;
@@ -38,7 +32,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity) {
         }
         this.hits--;
         if (this.hits === 0) {
-            drawAsteroid = false;
+            this.drawAsteroid = false;
             this.explode();
         }
     }
@@ -59,7 +53,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity) {
     }
 
     this.draw = function () {
-        if (drawAsteroid)
+        if (this.drawAsteroid)
             this.mainAsteroid.draw();
         else {
             for (var i = 0; i < this.pieces.length; i++) {
@@ -75,7 +69,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity) {
     }
 
     this.updatePosition = function () {
-        if (drawAsteroid)
+        if (this.drawAsteroid)
             this.mainAsteroid.updatePosition();
         else {
             for (var i = 0; i < this.pieces.length; i++) {
@@ -98,14 +92,16 @@ function asteroid(x, y, size, lives, spinSpeed, velocity) {
 }
 // Methods: this.draw() draws the asteroid
 //          this.updatePosition() updates the asteroid's position
-//          this.setup() sets up the points to draw the asteroid            
-function asteroid2(x, y, size, spinSpeed, velocity, alpha) {
+//          this.setup() sets up the points to draw the asteroid 
+//          rgb HAS TO BE AN ARRAY sorry :(           
+function asteroid2(x, y, size, spinSpeed, velocity, alpha, rgb) {
     this.xPos = x;
     this.yPos = y;
     this.scale = size;
     this.spin = spinSpeed;
     this.vel = velocity;
     this.clarity = alpha;
+    this.shade = rgb;
 
     this.points = [];
     this.numPoints = Math.ceil(random(2, 5)) * 2;
@@ -118,7 +114,7 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha) {
         translate(this.xPos, this.yPos);
         rotate(this.rot);
         scale(this.scale);
-        fill(112, 112, 112, this.clarity);
+        fill(this.shade[0], this.shade[1], this.shade[2], this.clarity);
         stroke(0);
         beginShape();
         curveVertex(this.points[0][0] - this.xPos, this.points[0][1] - this.yPos);
@@ -149,7 +145,7 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha) {
             theta += (1 / this.numPoints) * 2 * Math.PI;
         }
     }
-    
+
     this.isInside = function (x, y) {
         var returnValue = true;
         if(this.points.length === 0)
@@ -158,7 +154,7 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha) {
             if(implicitLine(this.points[i], this.points[i + 1], x, y) < 0)
                 return false;
         }
-        return true;    
+        return true;        
     }
 }
 
@@ -196,4 +192,12 @@ function particle(x, y, velocity, lifetime) {
         if (this.lifeSpan <= 0)
             delete this;
     }
+}
+
+function parametricCircle(cx, cy, theta, r) {
+    return [cx + r * Math.cos(theta), cy + r * Math.sin(theta)];
+}
+
+function implicitLine(point0, point1, x, y) {
+    return (point0[1] - point1[1]) * x + (point1[0] - point0[0]) * y + point0[0] * point1[1] - point1[0] * point0[1];
 }
