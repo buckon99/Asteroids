@@ -13,6 +13,7 @@ var asteroids = [];
 //            this.draw(): draws the asteroid (and the spark and/or small pieces particle system if there is any)
 //            this.updatePosition(): changes the postion and of the asteroid and particles based on the velocity, spinSpeed, 
 //            rgb HAS TO BE AN ARRAY sorry :(
+//            this.isInside(x, y): returns true or false for if the given point is inside the asteroid (only if the main asteroid is being drawn, otherwise returns false)
 
 function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
     this.mainAsteroid = new asteroid2(x, y, size, spinSpeed, velocity, 255, rgb);
@@ -96,11 +97,20 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
         for (var i = 0; i < this.particles.length; i++)
             this.particles[i].updatePosition();
     }
+
+    this.isInside = function(x, y) {
+        if(this.drawAsteroid)
+            return mainAsteroid.isInside(x, y);
+        else 
+            return false;
+    }
 }
 // Methods: this.draw() draws the asteroid
 //          this.updatePosition() updates the asteroid's position
 //          this.setup() sets up the points to draw the asteroid 
-//          rgb HAS TO BE AN ARRAY sorry :(           
+//            this.isInside(x, y): returns true or false for if the given point is inside the asteroid 
+//          rgb HAS TO BE AN ARRAY sorry :(        
+
 function asteroid2(x, y, size, spinSpeed, velocity, alpha, rgb) {
     this.xPos = x;
     this.yPos = y;
