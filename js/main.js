@@ -22,6 +22,7 @@ function draw(){
 	}
 	else
 	{
+		roundDraw();
 		updateShip();
 		updateUI();
 	}

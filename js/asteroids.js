@@ -96,7 +96,6 @@ function asteroid(x, y, size, lives, spinSpeed, velocity) {
             this.particles[i].updatePosition();
     }
 }
-
 // Methods: this.draw() draws the asteroid
 //          this.updatePosition() updates the asteroid's position
 //          this.setup() sets up the points to draw the asteroid            
