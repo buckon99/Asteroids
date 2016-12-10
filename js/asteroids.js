@@ -1,3 +1,10 @@
+/* This portion of code was created by Ryan Solorzano
+ * Asteroid object code
+ * CPE 123- Computational art
+ * Final Project
+ */
+
+
 var asteroids = [];
 
 // Methods: this.spark(sparkX, sparkY, direction): creates a spark particle system at given point in direction of vector given (magnitude changes max speed)
