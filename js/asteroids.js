@@ -19,7 +19,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
     this.mainAsteroid = new asteroid2(x, y, size, spinSpeed, velocity, 255, rgb);
     this.hits = lives;
 
-
+	this.rgb = rgb;
     this.particles = [];
     this.numParticles = random(30, 50);
 
@@ -47,7 +47,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
 
     this.explode = function () {
         for (var i = 0; i < this.numPieces; i++) {
-            var tempAsteroid = new asteroid2(this.mainAsteroid.xPos, this.mainAsteroid.yPos, this.mainAsteroid.scale / 5, random(-.1, .1), createVector(random(-3, 3), random(-3, 3)), 255);
+            var tempAsteroid = new asteroid2(this.mainAsteroid.xPos, this.mainAsteroid.yPos, this.mainAsteroid.scale / 5, random(-.1, .1), createVector(random(-3, 3), random(-3, 3)), 255, rgb);
             var tempLifeTime = Math.ceil(random(10, 50));
             this.pieces.push(tempAsteroid);
             this.piecesLife.push(tempLifeTime);
@@ -100,7 +100,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
 
     this.isInside = function(x, y) {
         if(this.drawAsteroid)
-            return mainAsteroid.isInside(x, y);
+            return this.mainAsteroid.isInside(x, y);
         else 
             return false;
     }
@@ -119,7 +119,7 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha, rgb) {
     this.vel = velocity;
     this.clarity = alpha;
     this.shade = rgb;
-
+	
     this.points = [];
     this.numPoints = Math.ceil(random(2, 5)) * 2;
     this.rot = 0;

@@ -22,9 +22,9 @@ function draw(){
 	}
 	else
 	{
-		roundDraw();
 		drawLaser();
 		updateShip();
+		updateRound();
 		updateUI();
 	}
 	
