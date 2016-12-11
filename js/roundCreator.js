@@ -39,15 +39,21 @@ function updateAsteroids(){
 				asteroids[i].spark(lasers[j].x, lasers[j].y, createVector(random(-1, 1), random(-1, 1)));
 				destroyLaser = true;
 				destroyAsteroid = true;
+				score+=10;
 			}
 			if((lasers[j].x < 0 || lasers[j].x>width)&&(lasers[j].y<0 || lasers[j].y>=height))
 				destroyLaser = true;
 			if(destroyLaser)
 				lasers.splice(j--, 1);
 		}
-		if(destroyAsteroid)
+		if(asteroids[i]!=null && collidePointRect(asteroids[i].mainAsteroid.xPos, asteroids[i].mainAsteroid.yPos, width/2-50, height/2-50, width/2+50, height/2+50)){
+			asteroids[i].spark(-50, -50, createVector(0, 0));
+			destroyAsteroid = true;
+			health-=currentRound;
+		}
+		if(asteroids[i]== null)
 			i--;
-		else if(asteroids[i]!= null)
+		else 
 			asteroids[i].draw();
 	}
 }
