@@ -37,6 +37,10 @@ function newGame(){
 	gameOver = false;
 	health = 16;
 	score = 0;
+	currentRound = 1;
+	endRoundTime = 600;
+	currentRoundTime = 0;
+	asteroids = [];
 }
 function mouseClicked(){
 	if(mainMenu)

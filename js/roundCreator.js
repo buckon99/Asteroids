@@ -1,4 +1,4 @@
-var currentRound = 0;
+var currentRound = 1;
 var endRoundTime = 600;
 var currentRoundTime = 0;
 var asteroids = [];
@@ -16,8 +16,8 @@ function updateRound(){
 	}
 	currentRoundTime++;
 	if(currentRoundTime%(30-currentRound) == 0 && random(0, 100-currentRound) <= 25){
-		var x = parseInt(random(0, 1.1))*width;
-		var y = parseInt(random(0, 1.1))*height;
+		var x = parseInt(random(0, 2))*width;
+		var y = parseInt(random(0, 2))*height;
 		if(random(0,1) >= .5)
 			y = random(0, height);
 		else x = random(0, width);
@@ -46,10 +46,13 @@ function updateAsteroids(){
 			if(destroyLaser)
 				lasers.splice(j--, 1);
 		}
-		if(asteroids[i]!=null && collidePointRect(asteroids[i].mainAsteroid.xPos, asteroids[i].mainAsteroid.yPos, width/2-50, height/2-50, width/2+50, height/2+50)){
-			asteroids[i].spark(-50, -50, createVector(0, 0));
-			destroyAsteroid = true;
-			health-=currentRound;
+		if(asteroids[i]!=null && collidePointRect(asteroids[i].mainAsteroid.xPos, asteroids[i].mainAsteroid.yPos, width/2-50, height/2-50, width/2+50, height/2+50) && asteroids[i].hits != 0){
+			if(asteroids[i].mainAsteroid.xPos <= width/2 + 50 && asteroids[i].mainAsteroid.yPos >= height/2+50){
+				console.log(asteroids[i].mainAsteroid.xPos +", " + asteroids[i].mainAsteroid.yPos);
+				asteroids[i].spark(-50, -50, createVector(0, 0));
+				destroyAsteroid = true;
+				dropHealth(currentRound);
+			}
 		}
 		if(asteroids[i]== null)
 			i--;

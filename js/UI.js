@@ -27,7 +27,7 @@ function gameOverScreen(){
 	if(mouseX >= width/2-175 && mouseX <= width/2+200 && mouseY>=2*height/3 && mouseY <= 2*height/3+70)
 		gameOverBtn.hover = true;
 	drawButton(width/2-175, 2*height/3, gameOverBtn.scalerX, gameOverBtn.scalerY, gameOverBtn.hover, "Play Again");
-	//text("GAME OVER", width/2, 2*height/3);
+
 }
 function gameOverClicked(){
 	if(mouseX >= width/2-175 && mouseX <= width/2+200 && mouseY>=2*height/3 && mouseY <= 2*height/3+70)
