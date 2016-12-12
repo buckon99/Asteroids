@@ -132,5 +132,6 @@ function drawRocket(x0, x1, y0, y1){ //rockets
 function laserClick(){
 
 	lasers.push(new drawLaser(cX, mouseX, cY, mouseY));
+	lasers[lasers.length - 1].playSound();
 
 }
