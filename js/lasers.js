@@ -1,26 +1,22 @@
 var cX, cY, shoot, x1, y1, speed;
 
-var laser = []
-function setup(){
+var lasers = []
+function laserSetup(){
 	shoot = false;
-	createCanvas(400, 400);
 	cX = width/2;
 	cY = height/2;
 	speed = 0;
 
 }
-function draw(){
-	background(255);
-	fill(255, 0 , 0);
-	
+function laserDraw(){
 	var ship = createVector(mouseX-cX, mouseY-cY);
 	ship.normalize();
 	ship.mult(10);
 	line(cX, cY, cX+ship.x, cY+ship.y);
 	
-	for(var i=0; i<laser.length; i++){
-		laser[i].draw();
-		laser[i].updatePos();
+	for(var i=0; i<lasers.length; i++){
+		lasers[i].draw();
+		lasers[i].updatePos();
 	}
 }
 
@@ -133,8 +129,8 @@ function drawRocket(x0, x1, y0, y1){ //rockets
 		this.y += laser.y;
 	}
 }
-function mouseClicked(){
+function laserClick(){
 
-	laser.push(new drawLaser(cX, mouseX, cY, mouseY));
+	lasers.push(new drawLaser(cX, mouseX, cY, mouseY));
 
 }

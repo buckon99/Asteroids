@@ -8,21 +8,24 @@ var canvas;
 function setup(){
 	cursor("normal.cur");
 	canvas = createCanvas(displayWidth, displayHeight);
-	
+	laserSetup();
 	resize();
 	setupTitleScreen();
 }
 window.addEventListener("resize", resize);
 function draw(){
+	console.log("Should be calling 1");
 	sceneBackground();
 	if(mainMenu)
 		updateTitleScreen();
 	else if(gameOver){
+		console.log("is this calling");
 		gameOverScreen();
 	}
 	else
 	{
-		drawLaser();
+		console.log("Should be calling");
+		laserDraw();
 		updateShip();
 		updateRound();
 		if(customizationTime)
