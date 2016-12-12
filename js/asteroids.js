@@ -213,16 +213,34 @@ function particle(x, y, velocity, lifetime) {
 
 function explosion(x, y, duration, numParticles) {
     var tempVector;
-    var particles = [];
+    this.particles = [];
     for (var i = 0; i < numParticles; i++) {
         tempVector = p5.Vector.fromAngle(random(2 * Math.PI));
-        tempVector.setMag(random(1, 5));
+        tempVector.setMag(random(1, 3));
         var tempPart = new particle(x, y, tempVector, random(10, duration));
-        particles.push(tempPart);
+        this.particles.push(tempPart);
     }
-    return particles;
-}
 
+    this.draw = function () {
+        for(var i = 0; i< this.particles.length; i++) 
+            this.particles[i].draw();
+    }
+
+    this.updatePosition = function() {
+        var temp = [];
+        for(var i = 0; i < this.particles.length; i++){
+            this.particles[i].updatePosition();
+            if(this.particles[i].lifeSpan <= 0){
+                delete this.particles.splice(i, 1);
+                i--;
+            }
+        }
+    }
+    this.run = function () {
+        this.draw();
+        this.updatePosition();
+    }
+}
 
 function parametricCircle(cx, cy, theta, r) {
     return [cx + r * Math.cos(theta), cy + r * Math.sin(theta)];
