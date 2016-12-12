@@ -33,6 +33,7 @@ function updateRound(){
 		
 		var v = createVector(width/2 - x, height/2 - y);
 		v.normalize();
+		v.mult(random(1, currentRound));
 		console.log(x, y);
 		asteroids.push(new asteroid(x, y, 1, 1, PI/60, v, [60, 60,60]));
 	}
