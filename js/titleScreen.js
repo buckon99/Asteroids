@@ -66,8 +66,10 @@ function updateTitleScreen(){
 	if(width/2 - 530 - buttons[2].scalerY*100 + exitOffscreenX > width)
 		mainMenu = false;
 }
+
 function drawButton(x, y, s1, s2, hover, str){
 	fill(0);
+	//var hoverSound = new Audio('Sound Assets/Menu Hover.wav');
 	push();
 		translate(x, y);
 		scale(s1, s2);
@@ -81,8 +83,10 @@ function drawButton(x, y, s1, s2, hover, str){
 		vertex(252.225, -86.5);
 		vertex(217.425, -86.5);
 		endShape();
-		if(hover)
+		if(hover){
 			fill(0, 0, 255, 50);
+			//hoverSound.play();
+		}
 		else
 			fill(0, 0, 255, 0);
 		beginShape();
@@ -124,12 +128,19 @@ function drawButton(x, y, s1, s2, hover, str){
 	pop();
 }
 function titleScreenClick(){
+	var menuClick = new Audio('Sound Assets/Menu Click2.wav');
 	if(mouseX >= width/2 - 200 && mouseX <= width/2 + 200){
-		if(mouseY >= 2*height/3-100 && mouseY <= 2*height/3)
+		if(mouseY >= 2*height/3-100 && mouseY <= 2*height/3){
 			buttons[0].clicked = true;
-		if(mouseY >= 2*height/3 + 20 && mouseY <= 2*height/3 + 120)
+			menuClick.play();
+		}
+		if(mouseY >= 2*height/3 + 20 && mouseY <= 2*height/3 + 120) {
 			buttons[1].clicked = true;
-		if(mouseY >= 2*height/3 + 140 && mouseY <= 2*height/3 + 240)
+			menuClick.play();
+		}
+		if(mouseY >= 2*height/3 + 140 && mouseY <= 2*height/3 + 240){
 			buttons[2].clicked = true;
+			menuClick.play();
+		}
 	}
 }
