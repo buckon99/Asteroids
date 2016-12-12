@@ -21,8 +21,33 @@ function drawMissile(x,y)
 }
 
 function drawGun(x,y)
-{
+{	
+	push()
 	translate(x,y)
+	fill(128)
+	rect(0,0,20,25)
+	rect(2.5,3,15,15)
+	rect(7.5,-17,5,30)
+	fill(80)
+	rect(6.5,-20,7,4)
+	pop()
+}
+
+function drawTurret(x,y,rot)
+{
+	push()
+	translate(x,y)
+	rotate(rot)
+	fill(60)
+	ellipse(0,0,70)
+	fill(128)
+	rect(-4,-60,8,60)
+	fill(200)
+	ellipse(0,0,50)
+	fill(80)
+	rect(-6,-67,12,7)
+	pop()
+
 }
 
 function drawShip()
@@ -194,4 +219,7 @@ function draw()
 	drawMissile(306,137)
 	drawMissile(184,137)
 	drawShip()
+	drawGun(53,190)
+	drawGun(420,190)
+	drawTurret(245,210,PI/4)
 }
