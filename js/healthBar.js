@@ -2,8 +2,11 @@ var health = 16;
 	
 function dropHealth(amt){
 	health -= amt;
-	if(health <= 0)
+	if(health <= 0){
+		var shipExplosion = new Audio('Sound Assets/Explosion2.wav');
+		shipExplosion.play();
 		gameOver = true;
+	}
 }
 function drawHealthBar(){
 	push();
