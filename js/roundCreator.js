@@ -54,7 +54,7 @@ function updateAsteroids(){
 			if(destroyLaser)
 				lasers.splice(j--, 1);
 		}
-		if(asteroids[i]!=null && asteroids[i].mainAsteroid.xPos >= width/2-50 && asteroids[i].mainAsteroid.xPos <= width/2+50, asteroids[i].mainAsteroid.yPos >= height/2-50 && asteroids[i].mainAsteroid.yPos <= height/2+50 && asteroids[i].hits != 0){
+		if(asteroids[i]!=null && asteroids[i].mainAsteroid.xPos >= width/2-50 && asteroids[i].mainAsteroid.xPos <= width/2+50 && asteroids[i].mainAsteroid.yPos >= height/2-50 && asteroids[i].mainAsteroid.yPos <= height/2+50 && asteroids[i].hits != 0){
 				console.log(asteroids[i].mainAsteroid.xPos +", " + asteroids[i].mainAsteroid.yPos);
 				asteroids[i].spark(-50, -50, createVector(0, 0));
 				destroyAsteroid = true;
