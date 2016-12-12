@@ -45,7 +45,8 @@ function updateAsteroids(){
 		{
 			var destroyLaser = false;
 			if(asteroids[i]!=null && asteroids[i].isInside(lasers[j].x, lasers[j].y)){
-				asteroids[i].spark(lasers[j].x, lasers[j].y, createVector(random(-1, 1), random(-1, 1)));
+				//asteroids[i].spark(lasers[j].x, lasers[j].y, createVector(random(-1, 1), random(-1, 1)));
+				asteroids[i].spark(lasers[j].x, lasers[j].y, createVector(asteroids[i].mainAsteroid.xPos - lasers[j].x, asteroids[i].mainAsteroid.yPos - lasers[j].y));
 				destroyLaser = true;
 				destroyAsteroid = true;
 				score+=10;
