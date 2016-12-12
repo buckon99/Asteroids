@@ -29,6 +29,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
     this.numPieces = random(3, 6);
 
     this.drawAsteroid = true;
+    this.explosionSound = new Audio('Sound Assets/explosion4.wav');
 
     this.spark = function (sparkX, sparkY, direction) {
         var tempVector;
@@ -53,6 +54,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
             this.piecesLife.push(tempLifeTime);
             this.piecesLifeRatios.push(255 / tempLifeTime);
         }
+        this.explosionSound.play(); 
     }
 
     this.destroy = function () {
