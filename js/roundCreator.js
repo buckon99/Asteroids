@@ -35,7 +35,8 @@ function updateRound(){
 		v.normalize();
 		v.mult(random(1, currentRound));
 		console.log(x, y);
-		asteroids.push(new asteroid(x, y, 1, 1, PI/60, v, [60, 60,60]));
+		var lives = Math.ceil(random(currentRound));
+		asteroids.push(new asteroid(x, y, 1, lives, PI/60, v, [60/lives, 60/lives,60/lives]));
 	}
 }
 function updateAsteroids(){
