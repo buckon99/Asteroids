@@ -1,11 +1,37 @@
-function drawShip(x, y, r)
+function drawMissile(x,y)
+{
+	push()
+	translate(x,y)
+	fill(255,0,0)
+	ellipse(0.5,5,10)
+	fill(128)
+	rect(-5,5,10,20)
+	rect(-7,25,14,100)
+	quad(7,90,15,100,15,120,7,120)
+	quad(-7,90,-15,100,-15,120,-7,120)
+	strokeWeight(2)
+	line(0,90,0,120)
+	pop()
+}
+function drawGun(x,y)
+{
+	translate(x,y)
+}
+function drawShip(x, y, r, t1x, t1y, t2x, t2y)
 {	
 	push();
 		translate(x, y);
 		rotate(r);
 		translate(-73, -70);
 		scale(.3);
-	
+	if(t1x == null)
+		drawMissile(184,137);
+	else{
+		drawMissile(t1x,t1y);
+	}
+	if(t2x==null)
+	drawMissile(306,137);
+		else drawMissile(t2x,t2y);
 	strokeWeight(1)
 	stroke(0)
 	fill(40,160,30)

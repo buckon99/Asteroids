@@ -3,6 +3,7 @@ var endRoundTime = 600;
 var currentRoundTime = 0;
 var asteroids = [];
 var roundFill = 255;
+var customizationTime = false;
 function startRound(){
 	currentRoundTime = 0;
 	currentRound++;
@@ -19,7 +20,7 @@ function updateRound(){
 	updateAsteroids();
 	if(currentRoundTime >= endRoundTime){
 		if(asteroids.length == 0)
-			startRound();
+			customizationTime = true;
 		return;
 	}
 	currentRoundTime++;

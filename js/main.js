@@ -25,9 +25,11 @@ function draw(){
 		drawLaser();
 		updateShip();
 		updateRound();
-		updateUI();
+		if(customizationTime)
+			customizationWindow();
+		else
+			updateUI();
 	}
-	
 	if(resetGame){
 		newGame();
 	}
