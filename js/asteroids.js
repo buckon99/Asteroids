@@ -19,7 +19,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
     this.mainAsteroid = new asteroid2(x, y, size, spinSpeed, velocity, 255, rgb);
     this.hits = lives;
 
-	this.rgb = rgb;
+    this.rgb = rgb;
     this.particles = [];
     this.numParticles = random(30, 50);
 
@@ -98,10 +98,10 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
             this.particles[i].updatePosition();
     }
 
-    this.isInside = function(x, y) {
-        if(this.drawAsteroid)
+    this.isInside = function (x, y) {
+        if (this.drawAsteroid)
             return this.mainAsteroid.isInside(x, y);
-        else 
+        else
             return false;
     }
 }
@@ -119,7 +119,7 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha, rgb) {
     this.vel = velocity;
     this.clarity = alpha;
     this.shade = rgb;
-	
+
     this.points = [];
     this.numPoints = Math.ceil(random(2, 5)) * 2;
     this.rot = 0;
@@ -165,13 +165,13 @@ function asteroid2(x, y, size, spinSpeed, velocity, alpha, rgb) {
 
     this.isInside = function (x, y) {
         var returnValue = true;
-        if(this.points.length === 0)
+        if (this.points.length === 0)
             return;
-        for(var i = 0; i < this.points.length - 1; i++) {
-            if(implicitLine(this.points[i], this.points[i + 1], x, y) < 0)
+        for (var i = 0; i < this.points.length - 1; i++) {
+            if (implicitLine(this.points[i], this.points[i + 1], x, y) < 0)
                 return false;
         }
-        return true;        
+        return true;
     }
 }
 
@@ -210,6 +210,19 @@ function particle(x, y, velocity, lifetime) {
             delete this;
     }
 }
+
+function explosion(x, y, duration, numParticles) {
+    var tempVector;
+    var particles = [];
+    for (var i = 0; i < numParticles; i++) {
+        tempVector = p5.Vector.fromAngle(random(2 * Math.PI));
+        tempVector.setMag(random(1, 5));
+        var tempPart = new particle(x, y, tempVector, random(10, duration));
+        particles.push(tempPart);
+    }
+    return particles;
+}
+
 
 function parametricCircle(cx, cy, theta, r) {
     return [cx + r * Math.cos(theta), cy + r * Math.sin(theta)];
