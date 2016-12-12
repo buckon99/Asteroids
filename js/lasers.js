@@ -24,6 +24,7 @@ function draw(){
 	}
 }
 
+function drawLaser(x0, x1, y0, y1){ //normal lasers
 		var laser = createVector(x1-x0, y1-y0);
 		laser.normalize();
 		laser.mult(10);
