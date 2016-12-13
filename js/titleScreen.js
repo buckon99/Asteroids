@@ -166,6 +166,7 @@ function drawMainTitle() {
 				set(img.get(x, y));
 		}
 	}
+	updatePixels();
 }
 
 function preload() {
