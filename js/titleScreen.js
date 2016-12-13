@@ -3,6 +3,8 @@ var stars = [];
 
 var exitOffscreenX = 0;
 var font;
+
+var img;
 function populateStarArray(count, minSize, maxSize, colors)
 {
 	for(var i = 0; i < count; i++){
@@ -27,7 +29,9 @@ function setupTitleScreen(){
 	buttons[0].text="Play";
 	buttons[1].text="Options";
 	buttons[2].text="Credits";
+	//drawMainTitle();
 }
+
 function updateTitleScreen(){
 	if(mouseX >= width/2 - 200 && mouseX <= width/2 + 200){
 		if(mouseY >= 2*height/3-100 && mouseY <= 2*height/3)
@@ -65,6 +69,7 @@ function updateTitleScreen(){
 	}
 	if(width/2 - 530 - buttons[2].scalerY*100 + exitOffscreenX > width)
 		mainMenu = false;
+	drawMainTitle();
 }
 
 function drawButton(x, y, s1, s2, hover, str){
@@ -127,6 +132,7 @@ function drawButton(x, y, s1, s2, hover, str){
 		text(str, 50, 50);
 	pop();
 }
+
 function titleScreenClick(){
 	var menuClick = new Audio('Sound Assets/Menu Click2.wav');
 	if(mouseX >= width/2 - 200 && mouseX <= width/2 + 200){
@@ -143,4 +149,25 @@ function titleScreenClick(){
 			menuClick.play();
 		}
 	}
+}
+
+function drawMainTitle() {
+	textSize(275);
+	textAlign(CENTER);
+	textFont("font");
+	fill(0, 112, 112);
+	text("Asteroids", width/2, height/3);
+	textSize(12);
+	loadPixels();
+	img.loadPixels();
+	for(var y = 0; y < height/3; y++) {
+		for (var x = 0; x < width/2; x++) {
+			if(get(x, y)[0] === 0 && get(x, y)[1] === 112 && get(x, y)[2] === 112) 
+				set(img.get(x, y));
+		}
+	}
+}
+
+function preload() {
+	img = loadImage("Image Assets/Craterscape1.jpg");
 }
