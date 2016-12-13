@@ -187,7 +187,7 @@ function setupMainTitle() {
 	img2.loadPixels();
 	for(var y = 0; y < img2.height; y++) {
 		for (var x = 0; x < img2.width; x++) {
-			if(img2.get(x, y)[0] < 1000 && img2.get(x, y)[1] > 100 && img2.get(x, y)[2] > 100) 
+			if(img2.get(x, y)[0] < 100 && img2.get(x, y)[1] > 100 && img2.get(x, y)[2] > 100) 
 				img2.set(img.get(x, y));
 		}
 	}
