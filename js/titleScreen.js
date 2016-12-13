@@ -152,7 +152,7 @@ function titleScreenClick(){
 }
 
 function drawMainTitle() {
-	textSize(275);
+	textSize(230);
 	textAlign(CENTER);
 	textFont("font");
 	fill(0, 112, 112);
