@@ -19,6 +19,9 @@ function drawGun(x,y)
 }
 function drawShip(x, y, r, t1x, t1y, t2x, t2y)
 {	
+	var switchColors =false;
+	if(customizations[2].bought)
+		switchColors = true;
 	push();
 		translate(x, y);
 		rotate(r);
@@ -34,8 +37,10 @@ function drawShip(x, y, r, t1x, t1y, t2x, t2y)
 		else drawMissile(t2x,t2y);
 	strokeWeight(1)
 	stroke(0)
-	fill(40,160,30)
-
+	
+	fill(40,160, 30)
+	if(switchColors)
+		fill(40,30,160)
 	beginShape()
 	//cockpit
 	vertex(245,22)
@@ -98,6 +103,8 @@ function drawShip(x, y, r, t1x, t1y, t2x, t2y)
 	rect(265,250,25,65)
 
 	fill(40,140,30)
+	if(switchColors)
+		fill(40,30,140)
 	beginShape()
 	vertex(205,250)
 	vertex(215,235)

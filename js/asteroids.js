@@ -40,7 +40,10 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
             this.particles.push(tempPart);
         }
         this.hits--;
-        if (this.hits === 0) {
+		if(customizations[1].bought)
+			this.hits-=4;
+		
+        if (this.hits <= 0) {
             this.drawAsteroid = false;
             this.explode();
         }
@@ -93,7 +96,7 @@ function asteroid(x, y, size, lives, spinSpeed, velocity, rgb) {
             }
         }
 
-        if (this.hits === 0 && this.particles.length === 0 && this.pieces.length === 0)
+        if (this.hits <= 0 && this.particles.length === 0 && this.pieces.length === 0)
             this.destroy();
 
         for (var i = 0; i < this.particles.length; i++)

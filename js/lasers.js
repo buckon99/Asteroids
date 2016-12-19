@@ -129,9 +129,10 @@ function drawRocket(x0, x1, y0, y1){ //rockets
 		this.y += laser.y;
 	}
 }
-function laserClick(){
-
+function laserClick(t){
+	if(t==1)
 	lasers.push(new drawLaser(cX, mouseX, cY, mouseY));
+	else lasers.push(new drawLaserBeam(cX, mouseX, cY, mouseY));
 	lasers[lasers.length - 1].playSound();
 
 }

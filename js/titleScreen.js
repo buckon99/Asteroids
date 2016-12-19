@@ -4,7 +4,7 @@ var stars = [];
 var exitOffscreenX = 0;
 var font;
 
-var img;
+var img3;
 var img2;
 function populateStarArray(count, minSize, maxSize, colors)
 {
@@ -48,8 +48,10 @@ function updateTitleScreen(){
 		
 	}
 	var clicked = false;
-	if(buttons[0].clicked || buttons[1].clicked || buttons[2].clicked)
+	if(buttons[0].clicked || buttons[1].clicked || buttons[2].clicked){
 		clicked = true;
+		storyOpen = true;
+	}
 	if(clicked)
 		exitOffscreenX += 40;
 	for(var i = 0; i < 3; i++){
@@ -183,12 +185,12 @@ function setupMainTitle() {
 	textSize(12);
 	*/
 	
-	img.loadPixels();
+	img3.loadPixels();
 	img2.loadPixels();
 	for(var y = 0; y < img2.height; y++) {
 		for (var x = 0; x < img2.width; x++) {
 			if(img2.get(x, y)[0] < 100 && img2.get(x, y)[1] > 100 && img2.get(x, y)[2] > 100) 
-				img2.set(img.get(x, y));
+				img2.set(x, y, img3.get(x, y));
 		}
 	}
 	img2.updatePixels();
@@ -197,6 +199,6 @@ function setupMainTitle() {
 }
 
 function preload() {
-	img = loadImage("Image Assets/Craterscape1.jpg");
+	img3 = loadImage("Image Assets/Craterscape1.jpg");
 	img2 = loadImage("Image Assets/Title.png");
 }

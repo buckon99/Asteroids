@@ -1,4 +1,5 @@
 var mainMenu = true;
+var storyOpen = false;
 var resize = function() {
 	console.log(document.documentElement.clientWidth);
 	width = displayWidth;
@@ -6,25 +7,28 @@ var resize = function() {
 };
 var canvas;
 function setup(){
+	windowInitiate();
 	cursor("normal.cur");
 	canvas = createCanvas(displayWidth, displayHeight);
 	laserSetup();
 	resize();
 	setupTitleScreen();
+	bossSetup();
 }
 window.addEventListener("resize", resize);
 function draw(){
-	console.log("Should be calling 1");
 	sceneBackground();
+
 	if(mainMenu)
 		updateTitleScreen();
 	else if(gameOver){
-		console.log("is this calling");
 		gameOverScreen();
+	}
+	else if(storyOpen){
+		storyScreen();
 	}
 	else
 	{
-		console.log("Should be calling");
 		laserDraw();
 		updateShip();
 		updateRound();
@@ -38,6 +42,7 @@ function draw(){
 	}
 }
 function newGame(){
+	balance = 0;
 	resetGame = false;
 	gameOver = false;
 	health = 16;
@@ -50,10 +55,14 @@ function newGame(){
 function mouseClicked(){
 	if(mainMenu)
 		titleScreenClick();
-	else if (gameOver)
+	else if (gameOver || storyOpen)
 		gameOverClicked();
+	else if(customizationTime)
+		customizationClick();
 	else{
-		laserClick();
+		if(customizations[1].bought)
+		laserClick(2);
+		else laserClick(1);
 	}
 	
 }
